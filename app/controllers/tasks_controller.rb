@@ -1,5 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:show]
+  
    
 
   # GET /tasks
@@ -11,7 +13,7 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
-    before_action :authenticate_user!
+    
   end
 
   # GET /tasks/new
