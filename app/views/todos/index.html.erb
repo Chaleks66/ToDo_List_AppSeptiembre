@@ -1,11 +1,17 @@
-<% @tasks.each_slice(3) do |tasks|%>
+<% @todos.each_slice(3) do |todos|%>
     <div class='row'>
-    <% tasks.each do |task| %>
+    <% todos.each do |todo| %>
     <div class="card" style="width: 18rem;">
-    <%= image_tag  task.pic, class: "card-img-top", style:'filter:grayscale(100%)' %>
+    <%= image_tag  todo.pic, class: "card-img-top", style:'filter:grayscale(100%)' %>
       <div class="card-body">
-        <h5 class="card-title"><%= task.name %></h5>
-        <%= link_to  "Completar", todo_path(task), method: :patch %>
+        <h5 class="card-title"><%= todo.name %></h5>
+
+
+        <% if user_signed_in? %>
+        <%= link_to "Salir", destroy_user_session_path, method: :delete %>
+    end
+        <%= link_to  "Completar", todos_path, method: :patch %>
+
       </div>
     </div>
         <% end %>

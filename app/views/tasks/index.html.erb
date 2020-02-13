@@ -2,28 +2,16 @@
 
 <h1>Tasks</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Pic</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.name %></td>
-        <td><%= task.pic %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Task', new_task_path %>
+<% @tasks.each_slice(3) do |tasks|%>
+  <div class='row'>
+  <% tasks.each do |task| %>
+  <div class="card" style="width: 18rem;">
+  <%= image_tag  task.pic, class: "card-img-top", style:'filter:grayscale(100%)' %>
+    <div class="card-body">
+      <h5 class="card-title"><%= task.name %></h5>
+      
+    </div>
+  </div>
+      <% end %>
+      </div>
+  <% end %>

@@ -1,9 +1,12 @@
 class TodosController < ApplicationController
+    before_action :authenticate_user!
     before_action :set_todo, only: [:update]
 
 
 def index
-    @tasks = Task.all
+
+    @todos = current_user.todos
+
     
 end
 
